@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Code Rain</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"> 您的浏览器不支持canvas标签，请您更换浏览器 </canvas>
+		<script>
+			var canvas = document.getElementById("canvas");
+			var can = canvas.getContext("2d");
+			var s = window.screen; //获取屏幕
+			var w = canvas.width = s.width; //获取屏幕宽度
+			var h = canvas.height = s.height; //获取屏幕高度
+
+			can.fillStyle = color();
+
+			var words = Array(256).join("1").split("");
+			//设置一个包含256个空元素的数组，join("1")用来把数组里的元素拼接成字符串，split("")过滤掉数组里的空元素
+
+			setInterval(draw, 45);
+
+			function draw() {
+				//can.fillRect()画一个实心矩形:坐标x，坐标y，矩形宽，举行高
+				can.fillStyle = 'rgba(0,0,0,0.05)';
+				can.fillRect(0, 0, w, h);
+				can.fillStyle = color();
+				words.map(function(y, n) {
+					text = String.fromCharCode(Math.ceil(65 + Math.random() * 57)); //转换为键盘上值
+					x = n * 10;
+					can.fillText(text, x, y)
+					words[n] = (y > 758 + Math.random() * 500 ? 0 : y + 10);
+				}); //数组元素的一个映射
+			}
+
+			//获取随机颜色
+			function color() {
+				var colors = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
+				var color = "";
+				for (var i = 0; i < 6; i++) {
+					//Math.random()产生一个0-1之间的小数
+					var n = Math.ceil(Math.random() * 15);
+					color += "" + colors[n];
+				}
+				return '#' + color;
+			}
+		</script>
+	</body>
+</html>
