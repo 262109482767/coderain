@@ -15,13 +15,13 @@
 		</style>
 	</head>
 	<body>
-		<canvas id="canvas"> 您的浏览器不支持canvas标签，请您更换浏览器 </canvas>
+		<canvas id="canvas" style="width:100vw;height:100vh;"> 您的浏览器不支持canvas标签，请您更换浏览器 </canvas>
 		<script>
 			var canvas = document.getElementById("canvas");
 			var can = canvas.getContext("2d");
 			var s = window.screen; //获取屏幕
-			var w = canvas.width = s.width; //获取屏幕宽度
-			var h = canvas.height = s.height; //获取屏幕高度
+			var w = s.width; //获取屏幕宽度
+			var h = s.height; //获取屏幕高度
 
 			can.fillStyle = color();
 
